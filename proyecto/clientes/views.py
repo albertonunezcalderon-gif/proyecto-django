@@ -4,18 +4,15 @@ from .forms import ClienteForm
 
 # Listado
 def lista_clientes(request):
-    clientes = Cliente.objects.filter(activo=True)
-    # Tomamos el parámetro de búsqueda del GET
-    query = request.GET.get('cliente', '')  # si no hay 'cliente', será cadena vacía
+    clientes = Cliente.objects.filter(activo=True) #Si el producto está activo que lo muestre
+    query = request.GET.get('cliente', '')  # Esto lo que hace que obtenga el campo de la request cliente si no hay que devuelva una cadena vacía para que no de error
     if query:
-        # Filtramos los clientes por nombre o email
+        # Filtramos los clientes por nombre o email en el que si uno de los dos cumple con la condición si filtra por ese si es cadena vacía como cumple con todo porque todo contiene una cadena vacía lo cumple
         clientes = Cliente.objects.filter(
-            nombre__icontains=query
+            nombre__icontains=query 
         ) | Cliente.objects.filter(
             email__icontains=query
         )
-    else:
-        clientes = Cliente.objects.filter(activo=True)
     return render(request, "clientes/clientes.html", {"clientes": clientes})
 
 # Crear
