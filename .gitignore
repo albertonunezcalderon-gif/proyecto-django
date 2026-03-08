@@ -1,0 +1,25 @@
+# Entorno virtual
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Base de datos local
+db.sqlite3
+
+# Variables de entorno
+.env
+
+# Archivos estáticos generados
+staticfiles/
+
+# IDEs
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+

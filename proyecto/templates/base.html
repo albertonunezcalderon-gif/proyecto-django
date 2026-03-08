@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{% block title %}Panel Django{% endblock %}</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Pedro_S%C3%A1nchez_in_2026.jpg/250px-Pedro_S%C3%A1nchez_in_2026.jpg" type="image/x-icon">
+</head>
+
+<body class="bg-light">
+
+<!-- HEADER -->
+<header class="bg-primary text-white text-center py-4 mb-3">
+    <h1 class="m-0">{% block header %}PANEL ADMIN{% endblock %}</h1>
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarTop">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="{% url 'productos' %}">Productos</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'ventas' %}">Ventas</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clientes</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'secciones' %}">Secciones</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="container">
+    <div class="card shadow-sm mb-4">
+        <div class="card-body text-center">
+            {% block content %}
+            <h2 class="card-title">Bienvenido al Panel</h2>
+            {% endblock %}
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white text-center py-3 mt-auto">
+    Trabajo realizado por Alberto Núñez Calderón 2ºASIR
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>
