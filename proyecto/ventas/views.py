@@ -3,8 +3,22 @@ from .models import Venta
 from .forms import VentaForm
 
 def lista_ventas(request):
-    ventas = Venta.objects.filter(activo=True)
-    return render(request, "ventas/ventas.html", {"ventas": ventas})
+    fecha = request.GET.get('fecha')
+    ventas = Venta.objects.all()
+    total_ventas = None
+
+    if fecha:
+        ventas = ventas.filter(fecha=fecha)
+        total_ventas = ventas.count()
+
+    fechas = Venta.objects.values_list('fecha', flat=True).distinct()
+
+    return render(request, "ventas/ventas.html", {
+        "ventas": ventas,
+        "fechas": fechas,
+        "total_ventas": total_ventas,
+        "fecha_seleccionada": fecha
+    })
 
 def nueva_venta(request):
     form = VentaForm(request.POST or None) #Esto lo que indica si la petición es POST que almacene los datos si no que no almacene nada en el forms.py
